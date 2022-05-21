@@ -60,7 +60,7 @@ def about(update : Update, context : CallbackContext):
     context.bot.send_chat_action(chat_id,ChatAction.TYPING)
     update.message.reply_text(text=messages["contact_us_msg"])
 # ---------------------------> /code < ---------------------------
-def code(update : Update, context: CallbackContext):
+def src(update : Update, context: CallbackContext):
     chat_id = update.message.chat_id
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
     update.message.reply_text(text=messages["src_msg"])
@@ -149,7 +149,7 @@ def run():
     updater.dispatcher.add_handler(CommandHandler("getprice", price))
     updater.dispatcher.add_handler(CommandHandler("help", Help))
     updater.dispatcher.add_handler(CommandHandler("about", about))
-    updater.dispatcher.add_handler(CommandHandler("code", code))
+    updater.dispatcher.add_handler(CommandHandler("src", src))
     updater.dispatcher.add_handler(CommandHandler("cryptocurrencies", cryptocurrencies))
     updater.dispatcher.add_handler(CommandHandler("moneys", moneys))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["menu_msg"]),menu))
