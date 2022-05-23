@@ -8,8 +8,9 @@ from telegram import ReplyKeyboardMarkup
 from telegram.ext import MessageHandler
 from telegram.ext.filters import Filters
 import requests
+from time import *
 # ---------------------------> token < ---------------------------
-updater = Updater(token="Your token",use_context=True)
+updater = Updater(token="your token",use_context=True)
 # ---------------------------> api < ---------------------------
 api = "https://min-api.cryptocompare.com/data/price?fsym={currency}&tsyms=USD,GBP,EUR,TRY,IRR,SUR,KWD,JPY,CNY,CAD,AUD"
 # ---------------------------> bot messages < ---------------------------
@@ -23,7 +24,7 @@ messages = {
     "support_btn" : "Support",
     "src_btn" : "Source Code",
     "back_btn" : "Back",
-    "contact_us_msg" : "Telegram : @your telegram\nInstagram : your instagram\nTwitter : your twitter\nGithub : your github\nLinkedin : your linkedin\nFacebook : your facebook\nDiscord : your discord",
+    "contact_us_msg" : "Your social medias",
     "list_crypto" : "list of crypto currencies",
     "list_money" : "list of moneys",
     "list_crypto_link" : "https://coinmarketcap.com/all/views/all/",
@@ -49,7 +50,8 @@ def price(update : Update, context : CallbackContext):
         chat_id = update.message.chat_id
         currency = update.message.text.split()[1]
         response = requests.get(api.format(currency=currency)).json()
-        message = f"Now the {currency.upper()} of price is :\n{response['USD']}\U0001F1FA\U0001F1F8\n{response['GBP']}\U0001F1EC\U0001F1E7\n{response['EUR']}\U0001F1EA\U0001F1FA\n{response['TRY']}\U0001F1F9\U0001F1F7\n{response['IRR']}\U0001F1EE\U0001F1F7\n{response['SUR']}\U0001F1F7\U0001F1FA\n{response['KWD']}\U0001F1F0\U0001F1FC\n{response['JPY']}\U0001F1EF\U0001F1F5\n{response['CNY']}\U0001F1E8\U0001F1F3\n{response['CAD']}\U0001F1E8\U0001F1E6\n{response['AUD']}\U0001F1E6\U0001F1FA"
+        Time = strftime("%d/%m/%Y")
+        message = f"In {Time}\nthe price of {currency} is :\n{response['USD']}\U0001F1FA\U0001F1F8\n{response['GBP']}\U0001F1EC\U0001F1E7\n{response['EUR']}\U0001F1EA\U0001F1FA\n{response['TRY']}\U0001F1F9\U0001F1F7\n{response['IRR']}\U0001F1EE\U0001F1F7\n{response['SUR']}\U0001F1F7\U0001F1FA\n{response['KWD']}\U0001F1F0\U0001F1FC\n{response['JPY']}\U0001F1EF\U0001F1F5\n{response['CNY']}\U0001F1E8\U0001F1F3\n{response['CAD']}\U0001F1E8\U0001F1E6\n{response['AUD']}\U0001F1E6\U0001F1FA"
         context.bot.send_chat_action(chat_id,ChatAction.TYPING )
         update.message.reply_text(message)
     except KeyError:
