@@ -7,30 +7,30 @@ from telegram.chataction import ChatAction
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import MessageHandler
 from telegram.ext.filters import Filters
-import requests
-from time import *
+
+
 # ---------------------------> token < ---------------------------
 updater = Updater(token="your token",use_context=True)
 # ---------------------------> api < ---------------------------
 api = "https://min-api.cryptocompare.com/data/price?fsym={currency}&tsyms=USD,GBP,EUR,TRY,IRR,SUR,KWD,JPY,CNY,CAD,AUD"
 # ---------------------------> bot messages < ---------------------------
 messages = {
-    "start_msg" : "Hello dear {}, Welcome to the bot\n\nIf you need some help, you can write /help:)",
-    "help_msg" : "Dear {}\nThe purpose of the robot:\nThe purpose of making such a bot is to get different and abundant currency prices for dear Telegram users :)\nHow it works\nfor get prices of considered currency you should start by /getprice and a space then write your currency iso code(note : you can get list of iso code from buttons.)\nresult : /getprice <currency iso code>\nExample\nSo if you want get bitcoin(BTC or btc) write /getprice BTC or /getprice btcOr for get american dollar(USD or usd) write /getprice USD or /getprice usd\nSupport:\nif bot has any error you can click support button then message to me from social medias;)\nSource code:\nDear Dev, you can get source code from my github just click source code button:)))\nMore:\nIf you have trouble finding the currency identifiers, do not worry: you can find those currencies by pressing another button.",
-    "menu_msg" : "Menu:",
-    "more_msg" : "More:",
-    "contact_us_msg" : "your social medias",
-    "list_crypto_msg": "Ten of the best digital currencies with ISO code:\n1. Bitocin --------------------------------------------> BTC\n2. Ethereum --------------------------------------------> ETH\n3. Tether --------------------------------------------> USDT\n4. Binance --------------------------------------------> BNB\n5. Solona --------------------------------------------> SOL\n6. Doge Coin --------------------------------------------> DOGE\n7. Tron --------------------------------------------> TRX\n8. Shiba Inu --------------------------------------------> SHIB\n9. Bitcon Cash --------------------------------------------> BCH\n10. Kardano --------------------------------------------> ADA\nFor more crypto currencies click More button....",
-    "list_money_msg" : "Five of the best digital currencies with ISO code:\n\n1. American Dollar --------------------------------------------> USD\n2. Europe Euro --------------------------------------------> EUR\n3. Pound Streling --------------------------------------------> GBP\n4. Kuweit Dinar --------------------------------------------> KWD\n5. Russian Ruble  --------------------------------------------> RUB\nFor more moneys click More button....",
-    "src_msg" : "The source code of bot is on my github:)\nMy github : your github",
-    "more_btn" : "More",
-    "more_btn2" : "Other crypto currencies",
-    "more_btn3": "Other moneys",
-    "support_btn" : "Support",
-    "src_btn" : "Source Code",
-    "back_btn" : "Back",
-    "list_crypto" : "list of crypto currencies",
-    "list_money" : "list of moneys",
+    "start_msg" : "سلام {} عزیز، به ربات خوش آمدید\n\nاگر به کمک نیاز دارید، می توانید /help را بنویسید:)",
+    "help_msg" : "کاربر عزیز {}\nهدف ربات:\nهدف از ساخت چنین رباتی دریافت قیمت ارزهای مختلف و فراوان برای کاربران عزیز تلگرام است :)\nچگونه کار می کند\nبرای دریافت قیمت ارز در نظر گرفته شده باید از /getprice شروع کنید و یک فاصله و سپس کد iso ارز خود را بنویسید (توجه داشته باشید: می توانید لیست کدهای iso را از دکمه ها دریافت کنید.)\nنتیجه: /getprice <currency iso code>\nمثال\nپس اگر می خواهید بیت کوین (BTC یا btc) دریافت کنید، بنویسید /getprice BTC یا /getprice btcیا برای دریافت دلار آمریکا (USD یا USD) بنویسید /getprice USD یا /getprice usd\nپشتیبانی:\nاگر ربات خطایی داشت می توانید دکمه پشتیبانی را کلیک کنید سپس از رسانه های اجتماعی برای من پیام دهید؛)\nکد منبع:\nعزیز توسعه دهنده، می توانید کد منبع را از github من دریافت کنید فقط روی دکمه کد منبع کلیک کنید:)))\nبیشتر:\nاگر در یافتن شناسه های ارز مشکل دارید، نگران نباشید: می توانید با فشار دادن دکمه دیگری آن ارزها را پیدا کنید.",
+    "menu_msg" : "منو:",
+    "more_msg" : "بیشتر:",
+    "contact_us_msg" : "your soical medias",
+    "list_crypto_msg": "ده مورد از بهترین ارزهای دیجیتال با کد ISO:\n1. Bitocin --------------------------------------------> BTC\n2. Ethereum --------------------------------------------> ETH\n3. Tether --------------------------------------------> USDT\n4. Binance --------------------------------------------> BNB\n5. Solona --------------------------------------------> SOL\n6. Doge Coin --------------------------------------------> DOGE\n7. Tron --------------------------------------------> TRX\n8. Shiba Inu --------------------------------------------> SHIB\n9. Bitcon Cash --------------------------------------------> BCH\n10. Kardano --------------------------------------------> ADA\nبرای ارزهای دیجیتال بیشتر روی دکمه بیشتر کلیک کنید...",
+    "list_money_msg" : "پنج مورد از بهترین پول ها با کد ISO:\n\n1. American Dollar --------------------------------------------> USD\n2. Europe Euro --------------------------------------------> EUR\n3. Pound Streling --------------------------------------------> GBP\n4. Kuweit Dinar --------------------------------------------> KWD\n5. Russian Ruble  --------------------------------------------> RUB\nFor more moneys click More button....",
+    "src_msg" : "کد منبع ربات در گیتهاب من است :)\nگیتهاب من : your github",
+    "more_btn" : "بیشتر",
+    "more_btn2" : "ارز های دیجیتال دیگر",
+    "more_btn3": "پول های دیگر",
+    "support_btn" : "پشتیبانی",
+    "src_btn" : "کد منبع",
+    "back_btn" : "برگشت",
+    "list_crypto" : "لیست ارز های دیجیتال",
+    "list_money" : "لیست پول ها ",
     "list_crypto_link" : "https://coinmarketcap.com/all/views/all/",
     "list_money_link" : "https://www.xe.com/iso4217.php"
     }
@@ -50,15 +50,18 @@ def Help(update : Update, context : CallbackContext):
 # ---------------------------> /getprice < ---------------------------
 def price(update : Update, context : CallbackContext):
     try:
+        import requests
+        from time import strftime as strtime
         chat_id = update.message.chat_id
         currency = update.message.text.split()[1]
         response = requests.get(api.format(currency=currency)).json()
-        Time = strftime("%d/%m/%Y")
-        message = f"In {Time}\nthe price of {currency.upper()} is :\n{response['USD']}\U0001F1FA\U0001F1F8\n{response['GBP']}\U0001F1EC\U0001F1E7\n{response['EUR']}\U0001F1EA\U0001F1FA\n{response['TRY']}\U0001F1F9\U0001F1F7\n{response['IRR']}\U0001F1EE\U0001F1F7\n{response['SUR']}\U0001F1F7\U0001F1FA\n{response['KWD']}\U0001F1F0\U0001F1FC\n{response['JPY']}\U0001F1EF\U0001F1F5\n{response['CNY']}\U0001F1E8\U0001F1F3\n{response['CAD']}\U0001F1E8\U0001F1E6\n{response['AUD']}\U0001F1E6\U0001F1FA"
+        date = strtime("%d/%m/%Y")
+        clock = strtime("%H:%M:%S")
+        message = f"در تاریخ {date} در ساعت {clock}\nقیمت {currency.upper()} برابر است با :\n{response['USD']}\U0001F1FA\U0001F1F8\n{response['GBP']}\U0001F1EC\U0001F1E7\n{response['EUR']}\U0001F1EA\U0001F1FA\n{response['TRY']}\U0001F1F9\U0001F1F7\n{response['IRR']}\U0001F1EE\U0001F1F7\n{response['SUR']}\U0001F1F7\U0001F1FA\n{response['KWD']}\U0001F1F0\U0001F1FC\n{response['JPY']}\U0001F1EF\U0001F1F5\n{response['CNY']}\U0001F1E8\U0001F1F3\n{response['CAD']}\U0001F1E8\U0001F1E6\n{response['AUD']}\U0001F1E6\U0001F1FA"
         context.bot.send_chat_action(chat_id,ChatAction.TYPING )
         update.message.reply_text(message)
     except KeyError:
-        update.message.reply_text(f"{currency.upper()} is not defind!")
+        update.message.reply_text(f"{currency.upper()} پیدا نشد!")
 # ---------------------------> /about < ---------------------------
 def about(update : Update, context : CallbackContext):
     chat_id = update.message.chat_id
