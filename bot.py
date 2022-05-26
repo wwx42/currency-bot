@@ -7,6 +7,9 @@ from telegram.chataction import ChatAction
 from telegram import ReplyKeyboardMarkup
 from telegram.ext import MessageHandler
 from telegram.ext.filters import Filters
+from datetime import datetime
+import requests
+import pytz
 # ---------------------------> token < ---------------------------
 updater = Updater(token="Your TOKEN",use_context=True)
 # ---------------------------> api < ---------------------------
@@ -14,13 +17,13 @@ api = "https://min-api.cryptocompare.com/data/price?fsym={currency}&tsyms=USD,GB
 # ---------------------------> bot messages < ---------------------------
 messages = {
     "start_msg" : "Hello Dear {}, welcome to the robot\n\nIf you need help, you can write /help :)",
-    "help_msg" : "Dear user{}\nRobot target:\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nExample:\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice usd\nSupport:\nIf the bot has an error, you can click the support button, then send me a message on social media;)\nSource Code:\nDear developer, you can get the source code from my github, just click the source code button :)))\nMore:\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
+    "help_msg" : "Dear user {}\nRobot target:\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nExample:\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice usd\nSupport:\nIf the bot has an error, you can click the support button, then send me a message on social media;)\nSource Code:\nDear developer, you can get the source code from my github, just click the source code button :)))\nMore:\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
     "menu_msg" : "Menu:",
     "more_msg" : "More:",
-    "contact_us_msg" : "Your Social Medias",
-    "list_crypto_msg": "Ten of the best digital currencies with ISO code:\n1. Bitocin --------------------------------------------> BTC\n2. Ethereum --------------------------------------------> ETH\n3. Tether --------------------------------------------> USDT\n4. Binance --------------------------------------------> BNB\n5. Solona --------------------------------------------> SOL\n6. Doge Coin --------------------------------------------> DOGE\n7. Tron --------------------------------------------> TRX\n8. Shiba Inu --------------------------------------------> SHIB\n9. Bitcon Cash --------------------------------------------> BCH\n10. Kardano --------------------------------------------> ADA\nClick on the more button for more digital currencies ...",
-    "list_money_msg" : "Five of the best currencies with ISO code:\n1. American Dollar --------------------------------------------> USD\n2. Europe Euro --------------------------------------------> EUR\n3. Pound Streling --------------------------------------------> GBP\n4. Kuweit Dinar --------------------------------------------> KWD\n5. Russian Ruble  --------------------------------------------> RUB\nFor more moneys click More button....",
-    "src_msg" : "The source code of the robot is in my github :)\nMy github : Your Github link",
+    "contact_us_msg" : " \n\nYour social medias",
+    "list_crypto_msg": "Ten of the best digital currencies with ISO code:\n\n1. Bitocin --------------------------------------------> /getprice BTC\n\n2. Ethereum --------------------------------------------> /getprice ETH\n\n3. Tether --------------------------------------------> /getpirce USDT\n\n4. Binance --------------------------------------------> /getprice BNB\n\n5. Solona --------------------------------------------> /getprice SOL\n\n6. Doge Coin --------------------------------------------> /getprice DOGE\n\n7. Tron --------------------------------------------> /getprice TRX\n\n8. Shiba Inu --------------------------------------------> /getprice SHIB\n\n9. Bitcon Cash --------------------------------------------> /getprice BCH\n\n10. Kardano --------------------------------------------> /getprice ADA\n\nClick on the more button for more digital currencies ...",
+    "list_money_msg" : "Five of the best currencies with ISO code:\n\n1. American Dollar --------------------------------------------> /getprice USD\n\n2. Europe Euro --------------------------------------------> /getprice EUR\n\n3. Pound Streling --------------------------------------------> /getprice GBP\n\n4. Kuweit Dinar --------------------------------------------> /getprice KWD\n\n5. Russian Ruble  --------------------------------------------> /getprice RUB\n\nFor more moneys click More button....",
+    "src_msg" : "The source code of the robot is in my github :)\nMy github : your github",
     "more_btn" : "More",
     "more_btn2" : "Other Crypto Currencies",
     "more_btn3": "Other Moneys",
@@ -48,17 +51,17 @@ def Help(update : Update, context : CallbackContext):
 # ---------------------------> /getprice < ---------------------------
 def price(update : Update, context : CallbackContext):
     try:
-        import requests
-        from time import strftime as strtime
         chat_id = update.message.chat_id
         currency = update.message.text.split()[1]
         response = requests.get(api.format(currency=currency)).json()
-        date = strtime("%d/%m/%Y")
-        message = f"In {date}\nThe price of {currency.upper()} is:\n{response['USD']}\U0001F1FA\U0001F1F8\n{response['GBP']}\U0001F1EC\U0001F1E7\n{response['EUR']}\U0001F1EA\U0001F1FA\n{response['TRY']}\U0001F1F9\U0001F1F7\n{response['IRR']}\U0001F1EE\U0001F1F7\n{response['SUR']}\U0001F1F7\U0001F1FA\n{response['KWD']}\U0001F1F0\U0001F1FC\n{response['JPY']}\U0001F1EF\U0001F1F5\n{response['CNY']}\U0001F1E8\U0001F1F3\n{response['CAD']}\U0001F1E8\U0001F1E6\n{response['AUD']}\U0001F1E6\U0001F1FA"
+        timezone = pytz.timezone("UTC")
+        date_time = datetime.now(timezone)
+        Time = date_time.strftime("%d/%m/%Y %H:%M")
+        message = f"In {Time}\n\nThe price of {currency.upper()} is:\n\n{response['USD']:,}\U0001F1FA\U0001F1F8\n\n{response['GBP']:,}\U0001F1EC\U0001F1E7\n\n{response['EUR']:,}\U0001F1EA\U0001F1FA\n\n{response['TRY']:,}\U0001F1F9\U0001F1F7\n\n{response['IRR']:,}\U0001F1EE\U0001F1F7\n\n{response['SUR']:,}\U0001F1F7\U0001F1FA\n\n{response['KWD']:,}\U0001F1F0\U0001F1FC\n\n{response['JPY']:,}\U0001F1EF\U0001F1F5\n\n{response['CNY']:,}\U0001F1E8\U0001F1F3\n\n{response['CAD']:,}\U0001F1E8\U0001F1E6\n\n{response['AUD']:,}\U0001F1E6\U0001F1FA"
         context.bot.send_chat_action(chat_id,ChatAction.TYPING )
         update.message.reply_text(message)
     except KeyError:
-        update.message.reply_text(f"{currency.upper()}is not defind!")
+        update.message.reply_text(f"{currency.upper()} is not defind!")
 # ---------------------------> /about < ---------------------------
 def about(update : Update, context : CallbackContext):
     chat_id = update.message.chat_id
@@ -134,7 +137,7 @@ def list_money(update : Update, context : CallbackContext):
         text=messages["list_money_msg"],
         reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
     )
-# ---------------------------> More button < ---------------------------
+# ---------------------------> more button < ---------------------------
 def more(update : Update, context : CallbackContext):
     chat_id = update.message.chat_id
     buttons = [
@@ -145,7 +148,7 @@ def more(update : Update, context : CallbackContext):
         text=messages["more_msg"],
         reply_markup=ReplyKeyboardMarkup(buttons,resize_keyboard=True)
     )
-# ---------------------------> More button 2 < ---------------------------
+# ---------------------------> more button 2 < ---------------------------
 def more2(update : Update, context : CallbackContext):
     chat_id = update.message.chat_id
     buttons = [
@@ -156,7 +159,7 @@ def more2(update : Update, context : CallbackContext):
         text=messages["list_crypto_link"],
         reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
     )
-# ---------------------------> More button 3 < ---------------------------
+# ---------------------------> more button 3 < ---------------------------
 def more3(update : Update, context : CallbackContext):
     chat_id = update.message.chat_id
     buttons = [
