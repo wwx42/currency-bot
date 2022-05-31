@@ -65,7 +65,7 @@ def price(update: Update, context: CallbackContext):
 def about(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
-    update.message.reply_text(text='Telegram : @codeit01\n\nGithub : [wwx42](https://github.com/wwx42)\n\nLinkedin : [Mahdi Mohammadkhani](https://www.linkedin.com/in/mahdi-mohammadkhani-6a4241237/)\n\nInstagram : [77l97l104l100l105](https://instagram.com/77l97l104l100ld=YmMyMTA2M2Y=)\n\nTwitter : [Mahdimohamadxa1](https://twitter.com/Mahdimohamadxa1)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True)
+    update.message.reply_text(text='Telegram : @Telegram id\n\nGithub : [Your github id](Your github link)\n\nLinkedin : [Your linkedin id](Your linkedin link)\n\nInstagram : [Your instagram id ](Your instagram link)\n\nTwitter : [Your twitter id ](Your twitter link)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True)
 # ---------------------------> /code < ---------------------------
 def src(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
@@ -101,7 +101,7 @@ def support(update: Update, context: CallbackContext):
     ]
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
     update.message.reply_text(
-        text='Telegram : @codeit01\n\nGithub : [wwx42](https://github.com/wwx42)\n\nLinkedin : [Mahdi Mohammadkhani](https://www.linkedin.com/in/mahdi-mohammadkhani-6a4241237/)\n\nInstagram : [77l97l104l100l105](https://instagram.com/77l97l104l100ld=YmMyMTA2M2Y=)\n\nTwitter : [Mahdimohamadxa1](https://twitter.com/Mahdimohamadxa1)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True,
+        text='Telegram : @Telegram id\n\nGithub : [Your github id](Your github link)\n\nLinkedin : [Your linkedin id](Your linkedin link)\n\nInstagram : [Your instagram id ](Your instagram link)\n\nTwitter : [Your twitter id ](Your twitter link)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True,
         reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
     )
 # ---------------------------> source code button < ---------------------------
