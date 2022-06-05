@@ -1,12 +1,14 @@
 # ---------------------------> modules < ---------------------------
 from telegram import Update
+from telegram import InlineKeyboardMarkup
+from telegram import InlineKeyboardButton
+from telegram import ReplyKeyboardMarkup
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import CallbackContext
-from telegram.chataction import ChatAction
-from telegram import ReplyKeyboardMarkup
 from telegram.ext import MessageHandler
 from telegram.ext.filters import Filters
+from telegram.chataction import ChatAction
 from datetime import datetime
 import requests
 import pytz
@@ -24,8 +26,6 @@ messages = {
     "list_money_msg": "Ten of the best Moneys with ISO code:\n\n1. American dollar -> /getprice USD\n\n2. European euro -----> /getprice EUR\n\n3. Sterling pound ------> /getprice GBP\n\n4. Arab dirham -----------> /getprice AED\n\n5. Russian ruble ----------> /getprice RUB\n\n6. Kuweit dinar -----------> /getprice KWD\n\n7. Japanese yen ----------> /getprice JPY\n\n8. Sweden krona -----> /getprice SEK\n\n9. Turkish lira ------> /getprice TRY\n\n10. Iranian rial -> /getprice IRR\n\nClick on the more button for more Moneys ...",
     "src_msg": "The source code of the robot is in my github :)\nMy github : Your github",
     "more_btn": "More",
-    "more_btn2": "Other Crypto Currencies",
-    "more_btn3": "Other Moneys",
     "support_btn": "Support",
     "src_btn": "Source Code",
     "back_btn": "Back",
@@ -119,23 +119,27 @@ def source_code(update: Update, context: CallbackContext):
 def list_crypto(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     buttons = [
-        [messages["more_btn2"]], [messages["back_btn"]]
+        [
+            InlineKeyboardButton(text="Other Crypto Currencies",url="https://coinmarketcap.com/all/views/all/")
+        ]
     ]
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
     update.message.reply_text(
         text=messages["list_crypto_msg"],
-        reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
+        reply_markup=InlineKeyboardMarkup(buttons)
     )
 # --------------------------- > list of moneys < ---------------------------
 def list_money(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     buttons = [
-        [messages["more_btn3"]], [messages["back_btn"]]
+        [
+            InlineKeyboardButton(text="Other monyes",url="https://www.xe.com/iso4217.php")
+        ]
     ]
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
     update.message.reply_text(
         text=messages["list_money_msg"],
-        reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
+        reply_markup=InlineKeyboardMarkup(buttons)
     )
 # ---------------------------> more button < ---------------------------
 def more(update: Update, context: CallbackContext):
@@ -185,8 +189,6 @@ def run():
     updater.dispatcher.add_handler(CommandHandler("moneys", moneys))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["menu_msg"]), menu))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["more_btn"]), more))
-    updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["more_btn2"]), more2))
-    updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["more_btn3"]), more3))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["support_btn"]), support))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["src_btn"]), source_code))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["list_crypto"]), list_crypto))
