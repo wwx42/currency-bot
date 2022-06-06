@@ -15,7 +15,7 @@ import pytz
 # ---------------------------> token < ---------------------------
 updater = Updater(token="Your token", use_context=True)
 # ---------------------------> api < ---------------------------
-api = "https://min-api.cryptocompare.com/data/price?fsym={currency}&tsyms=USD,GBP,EUR,TRY,IRR,SUR,KWD,JPY,CNY,CAD,AUD,AED"
+api = "https://min-api.cryptocompare.com/documentation"
 # ---------------------------> bot messages < ---------------------------
 messages = {
     "start_msg": "Hello Dear {}, welcome to the robot\n\nIf you need help, you can write /help :)",
