@@ -19,7 +19,7 @@ api = "https://min-api.cryptocompare.com/data/price?fsym={currency}&tsyms=USD,GB
 # ---------------------------> bot messages < ---------------------------
 messages = {
     "start_msg": "Hello Dear {}, welcome to the robot\n\nIf you need help, you can write /help :)",
-    "help_msg": "Dear user {}\nRobot target:\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nExample:\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice usd\nSupport:\nIf the bot has an error, you can click the support button, then send me a message on social media;)\nSource Code:\nDear developer, you can get the source code from my github, just click the source code button :)))\nMore:\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
+    "help_msg" : "Dear user {} \U0001F601\nRobot target \U0001F3AF\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\U0001F9BE\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nExample\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice usd\nLlist of crypot currencies\nSample of the best crypto currencies and more...\nList of moneys\nSample of best moneys and more...\nMore\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
     "menu_msg": "Menu:",
     "more_msg": "More:",
     "list_crypto_msg": "Ten of the best Crypto currencies with ISO code:\n\n1. Bitocin --------------> /getprice BTC\n\n2. Ethereum -------------> /getprice ETH\n\n3. Tether ----------------------> /getprice USD\n\n4. Binance -------------------------> /getprice BNB\n\n5. Solona -------------------------------> /getprice  SOL\n\n6. Doge Coin -------------------------> /getprice  DOGE\n\n7. Tron -----------------------------> /getprice TRX\n\n8. Shiba Inu ------------------> /getprice SHIB\n\n9. Bitcon Cash -----------> /getprice BCH\n\n10. Kardano ----------> /getprice ADA\n\nClick on the more button for more Crypto currencies ...",
@@ -120,7 +120,7 @@ def list_crypto(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     buttons = [
         [
-            InlineKeyboardButton(text="Other Crypto Currencies",url="https://coinmarketcap.com/all/views/all/")
+            InlineKeyboardButton(text="more",url="https://coinmarketcap.com/all/views/all/")
         ]
     ]
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
@@ -133,7 +133,7 @@ def list_money(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     buttons = [
         [
-            InlineKeyboardButton(text="Other monyes",url="https://www.xe.com/iso4217.php")
+            InlineKeyboardButton(text="more",url="https://www.xe.com/iso4217.php")
         ]
     ]
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
