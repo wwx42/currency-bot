@@ -15,16 +15,16 @@ import pytz
 # ---------------------------> token < ---------------------------
 updater = Updater(token="Your token", use_context=True)
 # ---------------------------> api < ---------------------------
-api = "https://min-api.cryptocompare.com/documentation"
+api = "https://min-api.cryptocompare.com/"
 # ---------------------------> bot messages < ---------------------------
 messages = {
     "start_msg": "Hello Dear {}, welcome to the robot\n\nIf you need help, you can write /help :)",
     "help_msg" : "Dear user {} \U0001F601\nRobot target \U0001F3AF\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\U0001F9BE\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nExample\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice usd\nLlist of crypot currencies\nSample of the best crypto currencies and more...\nList of moneys\nSample of best moneys and more...\nMore\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
     "menu_msg": "Menu:",
     "more_msg": "More:",
-    "list_crypto_msg": "Ten of the best Crypto currencies with ISO code:\n\n1. Bitocin --------------> /getprice BTC\n\n2. Ethereum -------------> /getprice ETH\n\n3. Tether ----------------------> /getprice USD\n\n4. Binance -------------------------> /getprice BNB\n\n5. Solona -------------------------------> /getprice  SOL\n\n6. Doge Coin -------------------------> /getprice  DOGE\n\n7. Tron -----------------------------> /getprice TRX\n\n8. Shiba Inu ------------------> /getprice SHIB\n\n9. Bitcon Cash -----------> /getprice BCH\n\n10. Kardano ----------> /getprice ADA\n\nClick on the more button for more Crypto currencies ...",
+    "list_crypto_msg": "Ten of the best Crypto currencies with ISO code:\n\n1. Bitocin --------------> /getprice BTC\n\n2. Ethereum -------------> /getprice ETH\n\n3. Tether ----------------------> /getprice USD\n\n4. Binance -------------------------> /getprice BNB\n\n5. Solona -------------------------------> /getprice  SOL\n\n6. Doge Coin ---------------------> /getprice  DOGE\n\n7. Tron -----------------------------> /getprice TRX\n\n8. Shiba Inu ------------------> /getprice SHIB\n\n9. Bitcon Cash -----------> /getprice BCH\n\n10. Kardano ----------> /getprice ADA\n\nClick on the more button for more Crypto currencies ...",
     "list_money_msg": "Ten of the best Moneys with ISO code:\n\n1. American dollar -> /getprice USD\n\n2. European euro -----> /getprice EUR\n\n3. Sterling pound ------> /getprice GBP\n\n4. Arab dirham -----------> /getprice AED\n\n5. Russian ruble ----------> /getprice RUB\n\n6. Kuweit dinar -----------> /getprice KWD\n\n7. Japanese yen ----------> /getprice JPY\n\n8. Sweden krona -----> /getprice SEK\n\n9. Turkish lira ------> /getprice TRY\n\n10. Iranian rial -> /getprice IRR\n\nClick on the more button for more Moneys ...",
-    "src_msg": "The source code of the robot is in my github :)\nMy github : Your github",
+    "src_msg": "The source code of the robot is in my github :)\nMy github : your github",
     "more_btn": "More",
     "support_btn": "Support",
     "src_btn": "Source Code",
@@ -33,6 +33,7 @@ messages = {
     "list_money": "List of Moneys",
     "list_crypto_link": "https://coinmarketcap.com/all/views/all/",
     "list_money_link": "https://www.xe.com/iso4217.php"
+
 }
 # ---------------------------> /start < ---------------------------
 def start(update: Update, context: CallbackContext):
@@ -56,7 +57,7 @@ def price(update: Update, context: CallbackContext):
         timezone = pytz.timezone("UTC")
         date_time = datetime.now(timezone)
         time = date_time.strftime("%d/%m/%Y %H:%M")
-        message = f"In {time}\n\nThe price of {currency.upper()} is:\n\n{response['USD']:,} \U0001F1FA\U0001F1F8\n\n{response['GBP']:,} \U0001F1EC\U0001F1E7\n\n{response['EUR']:,} \U0001F1EA\U0001F1FA\n\n{response['TRY']:,} \U0001F1F9\U0001F1F7\n\n{response['IRR']:,} \U0001F1EE\U0001F1F7\n\n{response['SUR']:,} \U0001F1F7\U0001F1FA\n\n{response['KWD']:,} \U0001F1F0\U0001F1FC\n\n{response['AED']:,} \U0001F1E6\U0001F1EA\n\n{response['JPY']:,} \U0001F1EF\U0001F1F5\n\n{response['CNY']:,} \U0001F1E8\U0001F1F3\n\n{response['CAD']:,} \U0001F1E8\U0001F1E6\n\n{response['AUD']:,} \U0001F1E6\U0001F1FA"
+        message = f"In {time}\n\nThe price of {currency.upper()} is:\n\n{response['USD']:,} \U0001F1FA\U0001F1F8\n\n{response['GBP']:,} \U0001F1EC\U0001F1E7\n\n{response['EUR']:,} \U0001F1EA\U0001F1FA\n\n{response['TRY']:,} \U0001F1F9\U0001F1F7\n\n{response['IRR']:,} \U0001F1EE\U0001F1F7\n\n{response['RUB']:,} \U0001F1F7\U0001F1FA\n\n{response['KWD']:,} \U0001F1F0\U0001F1FC\n\n{response['AED']:,} \U0001F1E6\U0001F1EA\n\n{response['JPY']:,} \U0001F1EF\U0001F1F5\n\n{response['CNY']:,} \U0001F1E8\U0001F1F3\n\n{response['CAD']:,} \U0001F1E8\U0001F1E6\n\n{response['AUD']:,} \U0001F1E6\U0001F1FA\n\n{response['CHF']:,} \U0001F1E8\U0001F1ED\n\n{response['BRL']:,} \U0001F1E7\U0001F1F7"
         context.bot.send_chat_action(chat_id, ChatAction.TYPING)
         update.message.reply_text(message)
     except KeyError:
@@ -65,7 +66,7 @@ def price(update: Update, context: CallbackContext):
 def about(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
-    update.message.reply_text(text='Telegram : @Telegram id\n\nGithub : [Your github id](Your github link)\n\nLinkedin : [Your linkedin id](Your linkedin link)\n\nInstagram : [Your instagram id ](Your instagram link)\n\nTwitter : [Your twitter id ](Your twitter link)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True)
+    update.message.reply_text(text='Telegram : @telegram_id\n\nGithub : [github id ](github link)\n\nLinkedin : [linkedin id](linkedin link)\n\nInstagram : [instagram id ](instagram link)\n\nTwitter : [twitter id](twitter link)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True)
 # ---------------------------> /code < ---------------------------
 def src(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
@@ -101,7 +102,7 @@ def support(update: Update, context: CallbackContext):
     ]
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
     update.message.reply_text(
-        text='Telegram : @Telegram id\n\nGithub : [Your github id](Your github link)\n\nLinkedin : [Your linkedin id](Your linkedin link)\n\nInstagram : [Your instagram id ](Your instagram link)\n\nTwitter : [Your twitter id ](Your twitter link)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True,
+        text='Telegram : @codeit01\n\nGithub : [wwx42](https://github.com/wwx42)\n\nLinkedin : [Mahdi Mohammadkhani](https://www.linkedin.com/in/mahdi-mohammadkhani-6a4241237/)\n\nInstagram : [mmx24](https://www.instagram.com/mmx24/)\n\nTwitter : [Mahdimohamadxa1](https://twitter.com/Mahdimohamadxa1)\n\n', parse_mode='MarkdownV2',disable_web_page_preview=True,
         reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
     )
 # ---------------------------> source code button < ---------------------------
@@ -153,30 +154,8 @@ def more(update: Update, context: CallbackContext):
         text=messages["more_msg"],
         reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
     )
-# ---------------------------> more button 2 < ---------------------------
-def more2(update: Update, context: CallbackContext):
-    chat_id = update.message.chat_id
-    buttons = [
-        [messages["back_btn"]]
-    ]
-    context.bot.send_chat_action(chat_id, ChatAction.TYPING)
-    update.message.reply_text(
-        text=messages["list_crypto_link"],
-        reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
-    )
-# ---------------------------> more button 3 < ---------------------------
-def more3(update: Update, context: CallbackContext):
-    chat_id = update.message.chat_id
-    buttons = [
-        [messages["back_btn"]]
-    ]
-    context.bot.send_chat_action(chat_id, ChatAction.TYPING)
-    update.message.reply_text(
-        text=messages["list_money_link"],
-        reply_markup=ReplyKeyboardMarkup(buttons, resize_keyboard=True)
-    )
-# ---------------------------> /back < ---------------------------
-def back(update: Update, context: CallbackContext):
+# ---------------------------> back1 < ---------------------------
+def back1(update: Update, context: CallbackContext):
     menu(update, context)
 # ---------------------------> run < ---------------------------
 def run():
@@ -193,7 +172,7 @@ def run():
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["src_btn"]), source_code))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["list_crypto"]), list_crypto))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["list_money"]), list_money))
-    updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["back_btn"]), back))
+    updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["back_btn"]), back1))
     updater.start_polling()
     updater.idle()
 run()
