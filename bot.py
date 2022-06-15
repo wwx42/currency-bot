@@ -20,7 +20,7 @@ updater = Updater(token="Your token", use_context=True)
 api = "https://min-api.cryptocompare.com/"
 # ---------------------------> bot messages < ---------------------------
 messages = {
-    "start_msg": "Hello Dear {}, welcome to the robot\n\nIf you need help, you can write /help :)",
+    "start_msg": "Hello Dear {}({}), welcome to the robot\n\nIf you need help, you can write /help :)",
     "help_msg" : "Dear user {} \U0001F601\nRobot target \U0001F3AF\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\U0001F9BE\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nAnd for chart \U0001F4C8\nif you want get bitcoin or other, you should write /getchart <iso code>\nResult\n/getchart <iso code>\nExample\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice  and for chart of bitcoin you should write /getchart BTC or /getprice btc and...\nLlist of crypot currencies\nSample of the best crypto currencies and more...\nList of moneys\nSample of best moneys and more...\nMore\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
     "menu_msg": "Menu:",
     "more_msg": "More:",
@@ -31,18 +31,21 @@ messages = {
     "support_btn": "Support",
     "src_btn": "Source Code",
     "back_btn": "Back",
-    "list_crypto": "List of Crypto Currencies",
-    "list_money": "List of Moneys",
+    "list_crypto": "Crypto Currency",
+    "list_money": "Money",
+    "list_company" : "Company",
     "list_crypto_link": "https://coinmarketcap.com/all/views/all/",
-    "list_money_link": "https://www.xe.com/iso4217.php"
+    "list_money_link": "https://www.xe.com/iso4217.php",
+    "list_company_link" : "https://www.nasdaq.com/market-activity/stocks/screener"
 
 }
 # ---------------------------> /start < ---------------------------
 def start(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     first_name = update.message.chat.first_name
+    acc_id = update.message.chat.id
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
-    update.message.reply_text(text=(messages["start_msg"].format(first_name)))
+    update.message.reply_text(text=(messages["start_msg"].format(first_name,acc_id)))
     menu(update, context)
 # ---------------------------> /help < ---------------------------
 def h(update: Update, context: CallbackContext):
@@ -99,6 +102,11 @@ def moneys(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     context.bot.send_chat_action(chat_id, ChatAction.TYPING)
     update.message.reply_text(text=messages["list_money_link"])
+# ---------------------------> /companies < ---------------------------
+def companies(update: Update,context: CallbackContext):
+    chat_id = update.message.chat_id
+    context.bot.send_chat_action(chat_id,ChatAction.TYPING)
+    update.message.reply_text(text=messages["list_company_link"])
 # ---------------------------> menu < ---------------------------
 def menu(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
@@ -159,6 +167,19 @@ def list_money(update: Update, context: CallbackContext):
         text=messages["list_money_msg"],
         reply_markup=InlineKeyboardMarkup(buttons)
     )
+# --------------------------- > list of companies button < ---------------------------
+def list_company(update: Update, context: CallbackContext):
+    chat_id = update.message.chat_id
+    buttons = [
+        [
+            InlineKeyboardButton(text="more",url="https://www.nasdaq.com/market-activity/stocks/screener")
+        ]
+    ]
+    context.bot.send_chat_action(chat_id, ChatAction.TYPING)
+    update.message.reply_text(
+        text=messages["list_company_msg"],
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
 # ---------------------------> more button < ---------------------------
 def more(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
@@ -184,12 +205,14 @@ def run():
     updater.dispatcher.add_handler(CommandHandler("src", src))
     updater.dispatcher.add_handler(CommandHandler("cryptocurrencies", cryptocurrencies))
     updater.dispatcher.add_handler(CommandHandler("moneys", moneys))
+    updater.dispatcher.add_handler(CommandHandler("companies",companies))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["menu_msg"]), menu))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["more_btn"]), more))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["support_btn"]), support))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["src_btn"]), source_code))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["list_crypto"]), list_crypto))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["list_money"]), list_money))
+    updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["list_company"]), list_company))
     updater.dispatcher.add_handler(MessageHandler(Filters.regex(messages["back_btn"]), back1))
     updater.start_polling()
     updater.idle()
