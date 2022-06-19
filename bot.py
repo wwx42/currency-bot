@@ -81,8 +81,10 @@ try :
             logging.info("({} - {} - @{}) got price of {} from bot.".format(name, chat_id,username,currency.upper()))
         except KeyError:
             update.message.reply_text(f"{currency.upper()} is not defined !!!")
+            logging.info("({} - {} - @{}) can't learn how get prices.".format(name, chat_id,username))
         except IndexError:
             update.message.reply_text("/getprice <currency> not only /getprice !!!")
+            logging.info("({} - {} - @{}) can't find currency price".format(name, chat_id,username))
 # ---------------------------> /getchart < ---------------------------
     def chart(update: Update, context: CallbackContext):
         try:
@@ -103,8 +105,10 @@ try :
             logging.info("({} - {} - @{}) got chart of {} from bot.".format(name, chat_id,username,currency.upper()))
         except IndexError:
             update.message.reply_text("/getchart <currency> not only /getchart !!!")
+            logging.info("({} - {} - @{}) can't learn how get chartes.".format(name, chat_id,username))
         except RemoteDataError:
             update.message.reply_text(f"{currency.upper()} is not defined !!!")
+            logging.info("({} - {} - @{}) can't find currency chart".format(name, chat_id,username))
 # ---------------------------> /about < ---------------------------
     def about(update: Update, context: CallbackContext):
         chat_id = update.message.chat_id
