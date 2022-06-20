@@ -108,7 +108,7 @@ try :
             update.message.reply_text("/getchart <currency_1> <currency_2>  not only /getchart !!!")
             logging.info("({} - {} - @{}) can't learn how get chartes.".format(name, chat_id,username))
         except RemoteDataError:
-            update.message.reply_text(f"{currency1.upper()} is not defined !!!")
+            update.message.reply_text(f"{currency1.upper()}-{currency2.upper()} is not defined !!!")
             logging.info("({} - {} - @{}) can't find currency chart".format(name, chat_id,username))
 # ---------------------------> /gettime < ---------------------------
     def time(update : Update, context : CallbackContext):
