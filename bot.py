@@ -27,7 +27,7 @@ api = "https://min-api.cryptocompare.com/data/price?fsym={currency}&tsyms=USD,GB
 # ---------------------------> bot messages < ---------------------------
 messages = {
     "start_msg": "Hello Dear {}-({}), welcome to the robot\n\nIf you need help, you can write /help :)",
-    "help_msg" : "Dear user {} \U0001F601\nRobot target \U0001F3AF\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\U0001F9BE\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nAnd for chart \U0001F4C8\nif you want get bitcoin or other, you should write /getchart <iso code>\nResult\n/getchart <iso code>\nExample\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice  and for chart of bitcoin you should write /getchart BTC or /getprice btc and...\ncrypto currency\nSample of the best crypto currencies and more...\nmoney\nSample of best moneys and more...\ncompany\nSample of the best companies and more...\nMore\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
+    "help_msg" : "Dear user {} \U0001F601\nRobot target \U0001F3AF\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\U0001F9BE\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nAnd for chart \U0001F4C8\nif you want get bitcoin or other, you should write /getchart <iso code>\nResult\n/getchart <iso code>\nExample\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice  and for chart of bitcoin you should write /getchart BTC or /getprice btc and...\nFor get time of market you should write /gettime\ncrypto currency\nSample of the best crypto currencies and more...\nmoney\nSample of best moneys and more...\ncompany\nSample of the best companies and more...\nMore\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
     "menu_msg": "Menu:",
     "more_msg": "More:",
     "list_crypto_msg" : "Ten of the best Crypto currencies with ISO code:\n\n1.Bitocin --------------> /getprice BTC\n1.Bitocin --------------> /getchart BTC\n\n2.Ethereum -------------> /getprice ETH\n2.Ethereum -------------> /getchart ETH\n\n3.Tether ----------------------> /getprice USDT\n3.Tether ----------------------> /getchart USDT\n\n4.Binance -------------------------> /getprice BNB\n4.Binance -------------------------> /getchart BNB\n\n5.Solona -------------------------------> /getprice  SOL\n5.Solona -------------------------------> /getchart SOL\n\n6.Doge Coin ---------------------> /getprice  DOGE\n6.Doge Coin ---------------------> /getchart DOGE\n\n7.Tron -----------------------------> /getprice TRX\n7.Tron -----------------------------> /getchart TRX\n\n8.Shiba Inu ------------------> /getprice SHIB\n8.Shiba Inu ------------------> /getchart SHIB\n\n9.Bitcon Cash -----------> /getprice BCH\n9.Bitcon Cash -----------> /getchart BCH\n\n10.Cardano ----------> /getprice ADA\n10.Cardano ----------> /getchart ADA\n\nClick on the more button for more Crypto currencies ...",
@@ -109,6 +109,17 @@ try :
         except RemoteDataError:
             update.message.reply_text(f"{currency.upper()} is not defined !!!")
             logging.info("({} - {} - @{}) can't find currency chart".format(name, chat_id,username))
+# ---------------------------> /gettime < ---------------------------
+    def time(update : Update, context : CallbackContext):
+        chat_id = update.message.chat_id
+        name = update.message.chat.full_name
+        username = update.message.chat.username
+        timezone = pytz.timezone("UTC")
+        date_time = datetime.now(timezone)
+        time = date_time.strftime("%d/%m/%Y %H:%M:%S")
+        context.bot.send_chat_action(chat_id,ChatAction.TYPING)
+        update.message.reply_text(text=f"Time of Market : {time}")
+        logging.info("({} - {} - @{}) got time of market".format(name, chat_id,username))
 # ---------------------------> /about < ---------------------------
     def about(update: Update, context: CallbackContext):
         chat_id = update.message.chat_id
@@ -262,15 +273,18 @@ try :
         username = update.message.chat.username 
         menu(update, context)
         logging.info("({} - {} - @{})is backed to menu!".format(name, chat_id,username))
-
 except error.RetryAfter:
-    Update.message.reply_text(text="Network has a problem, please Try again in minutes...")
+    Update.message.reply_text(text="There is a lot of traffic, please Try again in minutes...")
+    Update.message.reply_text(text="Thanks for your patience\U0001F64F")
+except error.NetworkError:
+    Update.message.reply_text(text="The network has a problem, please Try again in minutes...")
     Update.message.reply_text(text="Thanks for your patience\U0001F64F")
 # ---------------------------> run < ---------------------------
 def run():
     updater.dispatcher.add_handler(CommandHandler("start", start))
     updater.dispatcher.add_handler(CommandHandler("getchart",chart))
     updater.dispatcher.add_handler(CommandHandler("getprice", price))
+    updater.dispatcher.add_handler(CommandHandler("gettime",time))
     updater.dispatcher.add_handler(CommandHandler("help", h))
     updater.dispatcher.add_handler(CommandHandler("about", about))
     updater.dispatcher.add_handler(CommandHandler("src", src))
