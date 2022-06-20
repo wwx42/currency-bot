@@ -99,7 +99,7 @@ try :
             currency1 = update.message.text.split()[1]
             currency2 = update.message.text.split()[2]
             data = DataReader(f"{currency1}-{currency2}", "yahoo", start_time, end_time)
-            mpfl.plot(data, style="yahoo", type="candle", savefig="chart.png",title=f"{currency1.upper()}-{currency2.upper()} in 2022")
+            mpfl.plot(data, style="binance", type="candle", savefig="chart.png",title=f"{currency1.upper()}-{currency2.upper()} in 2022")
             with open("./chart.png", "rb") as img:
                 context.bot.send_chat_action(chat_id, ChatAction.UPLOAD_PHOTO)
                 context.bot.sendPhoto(chat_id, img, caption=f"The chart of {currency1.upper()}-{currency2.upper()} in {date}")
