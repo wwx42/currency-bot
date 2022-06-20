@@ -27,12 +27,12 @@ api = "https://min-api.cryptocompare.com/data/price?fsym={currency}&tsyms=USD,GB
 # ---------------------------> bot messages < ---------------------------
 messages = {
     "start_msg": "Hello Dear {}-({}), welcome to the robot\n\nIf you need help, you can write /help :)",
-    "help_msg" : "Dear user {} \U0001F601\nRobot target \U0001F3AF\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\U0001F9BE\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nAnd for chart \U0001F4C8\nif you want get bitcoin or other, you should write /getchart <iso code>\nResult\n/getchart <iso code>\nExample\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or USD) /getprice USD or /getprice  and for chart of bitcoin you should write /getchart BTC or /getprice btc and...\nFor get time of market you should write /gettime\ncrypto currency\nSample of the best crypto currencies and more...\nmoney\nSample of best moneys and more...\ncompany\nSample of the best companies and more...\nMore\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
+    "help_msg" : "Dear user {} \U0001F601\nRobot target \U0001F3AF\nThe purpose of building such a robot is to receive the price of different and abundant currencies for dear Telegram users :)\nHow it works\U0001F9BE\nTo get the target currency price you have to start from /getprice and write a space and then your currency iso code (note: you can get the list of iso codes from the buttons.)\nResult : /getprice <currency iso code>\nAnd for chart \U0001F4C8\nif you want get bitcoin or other, you should write /getchart BTC USD\nResult\n/getchart <iso code> <iso code2>\nExample\nSo if you want to get bitcoin (BTC or btc), write /getprice BTC or /getprice btc or write to get US dollars (USD or usd) /getprice USD or /getprice  and for chart of bitcoin you should write /getchart BTC USD or /getprice btc and...\nFor get time of market you should write /gettime\ncrypto currency\nSample of the best crypto currencies and more...\nmoney\nSample of best moneys and more...\ncompany\nSample of the best companies and more...\nMore\nIf you have trouble finding currency identifiers, do not worry: you can find those currencies by pressing another button.",
     "menu_msg": "Menu:",
     "more_msg": "More:",
-    "list_crypto_msg" : "Ten of the best Crypto currencies with ISO code:\n\n1.Bitocin --------------> /getprice BTC\n1.Bitocin --------------> /getchart BTC\n\n2.Ethereum -------------> /getprice ETH\n2.Ethereum -------------> /getchart ETH\n\n3.Tether ----------------------> /getprice USDT\n3.Tether ----------------------> /getchart USDT\n\n4.Binance -------------------------> /getprice BNB\n4.Binance -------------------------> /getchart BNB\n\n5.Solona -------------------------------> /getprice  SOL\n5.Solona -------------------------------> /getchart SOL\n\n6.Doge Coin ---------------------> /getprice  DOGE\n6.Doge Coin ---------------------> /getchart DOGE\n\n7.Tron -----------------------------> /getprice TRX\n7.Tron -----------------------------> /getchart TRX\n\n8.Shiba Inu ------------------> /getprice SHIB\n8.Shiba Inu ------------------> /getchart SHIB\n\n9.Bitcon Cash -----------> /getprice BCH\n9.Bitcon Cash -----------> /getchart BCH\n\n10.Cardano ----------> /getprice ADA\n10.Cardano ----------> /getchart ADA\n\nClick on the more button for more Crypto currencies ...",
+    "list_crypto_msg" : "Ten of the best Crypto currencies with ISO code:\n\n1.Bitocin --------------> /getprice BTC\n1.Bitocin ----------> /getchart BTC USD\n\n2.Ethereum -------------> /getprice ETH\n2.Ethereum ----------> /getchart ETH USD\n\n3.Tether ----------------------> /getprice USDT\n3.Tether ------------------> /getchart USDT USD\n\n4.Binance -------------------------> /getprice BNB\n4.Binance ----------------------> /getchart BNB USD\n\n5.Solona -------------------------------> /getprice  SOL\n5.Solona ---------------------------> /getchart SOL USD\n\n6.Doge Coin ---------------------> /getprice  DOGE\n6.Doge Coin -----------------> /getchart DOGE USD\n\n7.Tron -----------------------------> /getprice TRX\n7.Tron -------------------------> /getchart TRX USD\n\n8.Shiba Inu ------------------> /getprice SHIB\n8.Shiba Inu --------------> /getchart SHIB USD\n\n9.Bitcon Cash -----------> /getprice BCH\n9.Bitcon Cash -------> /getchart BCH USD\n\n10.Cardano ----------> /getprice ADA\n10.Cardano ------> /getchart ADA USD\n\nClick on the more button for more Crypto currencies ...",
     "list_money_msg": "Ten of the best Moneys with ISO code:\n\n1.American dollar -> /getprice USD\n\n2.European euro -----> /getprice EUR\n\n3.Sterling pound ------> /getprice GBP\n\n4.Arab dirham -----------> /getprice AED\n\n5.Russian ruble ----------> /getprice RUB\n\n6.Kuweit dinar -----------> /getprice KWD\n\n7.Japanese yen ----------> /getprice JPY\n\n8.Sweden krona -----> /getprice SEK\n\n9.Turkish lira ------> /getprice TRY\n\n10.Iranian rial -> /getprice IRR\n\nClick on the more button for more Moneys ...",
-    "list_company_msg" : "Five of the best Companies with ISO code:\n\n1.Apple --------------> /getchart AAPL\n\n2.Google ----------------------> /getchart GOOGL\n\n3.Amazon -------------------------> /getchart AMZN\n\n4.Tesla -----------------------> /getchart TSLA \n\n5.Alibaba ------------> /getchart BABA\n\nClick on the more button for more...",
+    "list_company_msg" : "Five of the best Companies with ISO code:\n\n1.Apple ----------> /getchart AAPL USD\n\n2.Google ------------------> /getchart GOOGL USD\n\n3.Amazon ---------------------> /getchart AMZN USD\n\n4.Tesla -------------------> /getchart TSLA USD\n\n5.Alibaba --------> /getchart BABA USD\n\nClick on the more button for more...",
     "src_msg": "The source code of the robot is in my github :)\nMy github : https://github.com/wwx42/currency-bot.git",
     "more_btn": "More",
     "support_btn": "Support",
@@ -81,10 +81,10 @@ try :
             logging.info("({} - {} - @{}) got price of {} from bot.".format(name, chat_id,username,currency.upper()))
         except KeyError:
             update.message.reply_text(f"{currency.upper()} is not defined !!!")
-            logging.info("({} - {} - @{}) can't learn how get prices.".format(name, chat_id,username))
+            logging.info("({} - {} - @{}) can't find currency price".format(name, chat_id,username))
         except IndexError:
             update.message.reply_text("/getprice <currency> not only /getprice !!!")
-            logging.info("({} - {} - @{}) can't find currency price".format(name, chat_id,username))
+            logging.info("({} - {} - @{}) can't learn how get prices.".format(name, chat_id,username))
 # ---------------------------> /getchart < ---------------------------
     def chart(update: Update, context: CallbackContext):
         try:
@@ -96,18 +96,19 @@ try :
             timezone = pytz.timezone("UTC")
             time = datetime.now(timezone)
             date = time.strftime("%d/%m/%Y %H:%M:%S")
-            currency = update.message.text.split()[1]
-            data = DataReader(f"{currency}-USD", "yahoo", start_time, end_time)
-            mpfl.plot(data, style="yahoo", type="ohlc", savefig="chart.png")
+            currency1 = update.message.text.split()[1]
+            currency2 = update.message.text.split()[2]
+            data = DataReader(f"{currency1}-{currency2}", "yahoo", start_time, end_time)
+            mpfl.plot(data, style="yahoo", type="candle", savefig="chart.png",title=f"{currency1.upper()}-{currency2.upper()} in 2022")
             with open("./chart.png", "rb") as img:
                 context.bot.send_chat_action(chat_id, ChatAction.UPLOAD_PHOTO)
-                context.bot.sendPhoto(chat_id, img, caption=f"The chart of {currency.upper()} in {date}")
-            logging.info("({} - {} - @{}) got chart of {} from bot.".format(name, chat_id,username,currency.upper()))
+                context.bot.sendPhoto(chat_id, img, caption=f"The chart of {currency1.upper()}-{currency2.upper()} in {date}")
+            logging.info("({} - {} - @{}) got chart of {}-{} from bot.".format(name, chat_id,username,currency1.upper(),currency2.upper()))
         except IndexError:
-            update.message.reply_text("/getchart <currency> not only /getchart !!!")
+            update.message.reply_text("/getchart <currency_1> <currency_2>  not only /getchart !!!")
             logging.info("({} - {} - @{}) can't learn how get chartes.".format(name, chat_id,username))
         except RemoteDataError:
-            update.message.reply_text(f"{currency.upper()} is not defined !!!")
+            update.message.reply_text(f"{currency1.upper()} is not defined !!!")
             logging.info("({} - {} - @{}) can't find currency chart".format(name, chat_id,username))
 # ---------------------------> /gettime < ---------------------------
     def time(update : Update, context : CallbackContext):
