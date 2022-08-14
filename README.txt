@@ -3,4 +3,4 @@
 3 ---> git clone https://github.com/wwx42/currency-bot.git
 4 ---> cd currency_bot
 5 ---> pip3 install -r requirements.txt
-6 ---> python3 crypto.py
+6 ---> python3 bot.py
